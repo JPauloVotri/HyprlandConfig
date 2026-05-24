@@ -1,8 +1,7 @@
 local terminal = "kitty"
 local fileManager = "nautilus"
-local menu = "rofi -show drun -hover-select -me-select-entry '' " ..
-             "-me-accept-entry MousePrimary -theme " ..
-             "$HOME/.config/rofi/scripts/launcher/config.rasi"
+local menu = "$HOME/.config/rofi/scripts/launcher/script.sh"
+local fonts = "$HOME/.config/rofi/scripts/fonts/script.sh"
 local power = "$HOME/.config/rofi/scripts/powermenu/script.sh"
 local print = "hyprshot -m active -m output"
 local screenshot = "$HOME/.config/rofi/scripts/screenshot/script.sh"
@@ -27,6 +26,7 @@ end
 bindMod("Return", hl.dsp.exec_cmd(terminal))
 bindMod("E", hl.dsp.exec_cmd(fileManager))
 bindMod("Space", hl.dsp.exec_cmd(menu))
+bindModShift("F", hl.dsp.exec_cmd(fonts))
 bindModShift("Escape", hl.dsp.exec_cmd(power))
 bindMod("L", hl.dsp.exec_cmd("hyprlock"))
 
