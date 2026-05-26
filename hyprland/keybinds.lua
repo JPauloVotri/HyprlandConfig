@@ -12,15 +12,15 @@ local modAlt = mod .. "ALT+"
 local scripts = "$HOME/.local/bin/scripts/"
 
 local function bindMod(key, action, opts)
-  return hl.bind(mod .. tostring(key), action, opts)
+    return hl.bind(mod .. tostring(key), action, opts)
 end
 
 local function bindModShift(key, action, opts)
-  return hl.bind(modShift .. tostring(key), action, opts)
+    return hl.bind(modShift .. tostring(key), action, opts)
 end
 
 local function bindModAlt(key, action, opts)
-  return hl.bind(modAlt .. tostring(key), action, opts)
+    return hl.bind(modAlt .. tostring(key), action, opts)
 end
 
 -- Executar aplicações
@@ -43,17 +43,18 @@ bindMod("Period", hl.dsp.layout("splitratio +0.1"), { repeating = true })
 
 -- Mover o foco nas janelas
 for i = 1, 4 do
-  local keys = { 44, 45, 46, 47 } --- l, d, u, r
-  local focusdir = { "l", "d", "u", "r" }
+    local keys = { 44, 45, 46, 47 }
+    local focusdir = { "l", "d", "u", "r" }
 
-  bindMod("code:" .. keys[i],
-          hl.dsp.focus({ direction = focusdir[i] }),
-          { description = "Window: Focus " .. keys[i] })
+    bindMod("code:" .. keys[i],
+        hl.dsp.focus({ direction = focusdir[i] }),
+        { description = "Window: Focus " .. keys[i] }
+    )
 end
 
 for i = 1, 10 do
-  bindMod(i % 10, hl.dsp.focus({ workspace = i }))
-  bindModShift(i % 10, hl.dsp.window.move({ workspace = i }))
+    bindMod(i % 10, hl.dsp.focus({ workspace = i }))
+    bindModShift(i % 10, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Mover Workspace de monitor
@@ -110,7 +111,8 @@ hl.bind(
     )
 )
 hl.bind("XF86AudioMicMute",
-        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
+    hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
+)
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
