@@ -9,6 +9,7 @@ local screenshot = "$HOME/.config/rofi/scripts/screenshot/script.sh"
 local mod = "SUPER+"
 local modShift = mod .. "SHIFT+"
 local modAlt = mod .. "ALT+"
+local scripts = "$HOME/.local/bin/scripts/"
 
 local function bindMod(key, action, opts)
   return hl.bind(mod .. tostring(key), action, opts)
@@ -67,14 +68,47 @@ bindMod("mouse:272", hl.dsp.window.drag())
 bindMod("mouse:273", hl.dsp.window.resize())
 
 -- Mutimídia
-hl.bind("XF86AudioRaiseVolume",
-        hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-        { repeating = true, ignore_mods = true })
-hl.bind("XF86AudioLowerVolume",
-        hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-        { repeating = true, ignore_mods = true })
-hl.bind("XF86AudioMute",
-        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+hl.bind(
+    "XF86AudioRaiseVolume",
+    hl.dsp.exec_cmd(
+        scripts .. "volume.sh up || " ..
+        "(pactl set-sink-mute @DEFAULT_SINK@ 0 && " ..
+        "pactl set-sink-volume @DEFAULT_SINK@ +5%)"
+    ),
+    { repeating = true }
+)
+hl.bind(
+    "SHIFT+XF86AudioRaiseVolume",
+    hl.dsp.exec_cmd(
+        scripts .. "volume.sh up high ||" ..
+        "(pactl set-sink-mute @DEFAULT_SINK@ 0 && " ..
+        "pactl set-sink-volume @DEFAULT_SINK@ +10%)"
+    ),
+    { repeating = true }
+)
+hl.bind(
+    "XF86AudioLowerVolume",
+    hl.dsp.exec_cmd(
+        scripts .. "volume.sh down || " ..
+        "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    ),
+    { repeating = true }
+)
+hl.bind(
+    "SHIFT+XF86AudioLowerVolume",
+    hl.dsp.exec_cmd(
+        scripts .. "volume.sh down high ||" ..
+        "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+    ),
+    { repeating = true }
+)
+hl.bind(
+    "XF86AudioMute",
+    hl.dsp.exec_cmd(
+        scripts .. "volume.sh mute ||" ..
+        "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    )
+)
 hl.bind("XF86AudioMicMute",
         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
@@ -83,12 +117,28 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
 
 -- Brilho
-hl.bind("XF86MonBrightnessUp",
-        hl.dsp.exec_cmd("$HOME/.config/dunst/brightness.sh up"),
-        { repeating = true, ignore_mods = true })
-hl.bind("XF86MonBrightnessDown",
-        hl.dsp.exec_cmd("$HOME/.config/dunst/brightness.sh down"),
-        { repeating = true, ignore_mods = true })
+hl.bind(
+    "XF86MonBrightnessUp",
+    hl.dsp.exec_cmd(scripts .. "brightness.sh up || brightnessctl set 10%+"),
+    { repeating = true }
+)
+hl.bind(
+    "XF86MonBrightnessDown",
+    hl.dsp.exec_cmd(scripts .. "brightness.sh down || brightnessctl set 10%-"),
+    { repeating = true }
+)
+hl.bind(
+    "SHIFT+XF86MonBrightnessUp",
+    hl.dsp.exec_cmd(scripts .. "brightness.sh up low || brightnessctl set 5%+"),
+    { repeating = true }
+)
+hl.bind(
+    "SHIFT+XF86MonBrightnessDown",
+    hl.dsp.exec_cmd(
+        scripts .. "brightness.sh down low || brightnessctl set 5%-"
+    ),
+    { repeating = true }
+)
 
 -- Outros
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
