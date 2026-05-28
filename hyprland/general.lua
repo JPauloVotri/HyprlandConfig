@@ -32,5 +32,9 @@ hl.config({
     touchpad = {
       natural_scroll = true,
     }
+  },
+
+  misc = {
+    disable_hyprland_logo = true
   }
 })
