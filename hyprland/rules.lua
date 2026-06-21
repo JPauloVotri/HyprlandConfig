@@ -24,34 +24,16 @@ hl.window_rule({
   match = {
     title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$"
   },
-  float = true
-})
-hl.window_rule({
-  match = {
-    title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$"
+  size = {
+    "(monitor_h * 0.25 * 16/9)",
+    "(monitor_h * 0.25)"
   },
-  keep_aspect_ratio = true
-})
-hl.window_rule({
-  match = {
-    title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$"
+  move = { 
+    "(monitor_w - 18 - monitor_h * 0.25 * 16/9)",
+    "(monitor_h - 18 - monitor_h * 0.25)"
   },
-  move = { "(monitor_w*0.73)", "(monitor_h*0.72)" }
-})
-hl.window_rule({
-  match = {
-    title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$"
-  },
-  size = { "(monitor_w*0.25)", "(monitor_h*0.25)" }
-})
-hl.window_rule({
-  match = {
-    title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
-  float = true
-})
-hl.window_rule({
-  match = {
-    title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
+  float = true,
+  keep_aspect_ratio = true,
   pin = true
 })
 
