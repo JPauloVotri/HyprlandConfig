@@ -70,36 +70,3 @@ hl.window_rule({
   float = true,
   center = true,
 })
-
--- Workspaces de Aplicações
-hl.window_rule({
-  workspace = 1,
-  match = {
-    class = "^(Code|dev.zed.Zed|codium)$"
-  },
-})
-hl.window_rule({
-  workspace = 3,
-  match = {
-    class = "^(firefox|chromium|brave|vivaldi|microsoft)$"
-  },
-})
-hl.window_rule({
-  workspace = 4,
-  match = {
-    class = "^(org.mozilla.Thunderbird)$"
-  },
-})
-hl.window_rule({
-  workspace = 5,
-  match = {
-    class = "^(Spotify)$"
-  },
-})
-hl.window_rule({
-  workspace = 6,
-  match = {
-    class = "^(discord)$"
-  },
-  center = true,
-})
