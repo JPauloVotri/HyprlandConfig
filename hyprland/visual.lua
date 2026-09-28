@@ -1,10 +1,37 @@
 require("hyprland.colors")
 
+local gaps_active = false
+
+function ToggleGaps()
+  if gaps_active then
+    hl.config({
+      general = {
+        gaps_in = 0,
+        gaps_out = 0,
+        border_size = 1,
+      },
+      decoration = {
+        rounding = 0,
+      },
+    })
+    gaps_active = false
+  else
+    hl.config({
+      general = {
+        gaps_in = 8,
+        gaps_out = 16,
+        border_size = 2,
+      },
+      decoration = {
+        rounding = 8,
+      },
+    })
+    gaps_active = true
+  end
+end
+
 hl.config({
   general = {
-    gaps_in = 8,
-    gaps_out = 16,
-    border_size = 2,
     col = {
       active_border = {
         colors = { primary, secondary },
@@ -21,7 +48,6 @@ hl.config({
   },
 
   decoration = {
-    rounding = 8,
     rounding_power = 4,
 
     active_opacity = 1.0,
@@ -159,3 +185,5 @@ hl.animation({
   bezier = "menu_decel",
   style = "slide"
 })
+
+ToggleGaps()

@@ -35,6 +35,7 @@ bindMod("L", hl.dsp.exec_cmd("hyprlock"))
 bindModShift("C", hl.dsp.window.close())
 bindMod("V", hl.dsp.window.float({ action = "toggle" }))
 bindMod("F", hl.dsp.window.fullscreen({ action = "toggle" }))
+bindModAlt("F", ToggleGaps)
 bindModAlt("P", hl.dsp.window.pin())
 
 -- Tamanho da divisão de janelas
