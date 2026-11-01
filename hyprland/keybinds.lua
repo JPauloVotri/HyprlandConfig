@@ -145,6 +145,10 @@ hl.bind(
 
 -- Outros
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
+hl.bind("XF86Explorer", hl.dsp.exec_cmd(fileManager))
+hl.bind("XF86HomePage", hl.dsp.exec_cmd("xdg-open \"about:blank\""))
+hl.bind("XF86Tools", hl.dsp.exec_cmd("code"))
+hl.bind("XF86Mail", hl.dsp.exec_cmd("xdg-open \"mailto:\""))
 hl.bind("Print", hl.dsp.exec_cmd(print))
 bindModShift("S", hl.dsp.exec_cmd(screenshot))
 
