@@ -63,7 +63,7 @@ bindModShift("Tab", hl.dsp.workspace.move({ monitor = "-1" }))
 bindMod("Tab", hl.dsp.workspace.move({ monitor = "+1" }))
 
 -- Abre e fecha a Waybar
-bindMod("Escape", hl.dsp.exec_cmd("killall waybar || waybar"))
+bindMod("Escape", hl.dsp.exec_cmd("killall waybar || waybar" .. GetWaybarArgs()))
 
 -- Mover/redimensionar janelas
 bindMod("mouse:272", hl.dsp.window.drag())
